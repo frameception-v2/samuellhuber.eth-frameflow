@@ -1,6 +1,6 @@
 Here's the executable task list following your specifications:
 
-- [ ] Task 1: Create blog API route
+- [x] Task 1: Create blog API route
   File: pages/api/posts.ts
   Action: Create new API route
   Description: Fetch 5 latest posts from CMS
