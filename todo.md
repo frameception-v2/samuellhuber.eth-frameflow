@@ -53,7 +53,7 @@ Here's the executable task list following your specifications:
   ```
   Criteria: URL updates with post index on click
 
-- [ ] Task 4: Create comment input
+- [x] Task 4: Create comment input
   File: components/CommentInput.tsx
   Action: Create new component
   Description: Persisted draft comment
