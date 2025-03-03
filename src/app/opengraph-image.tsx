@@ -11,37 +11,6 @@ function debugLog(message: string, ...args: any[]) {
   console.log(`[OG Image Debug] ${message}`, ...args);
 }
 
-// Function to load font with error handling
-async function loadFont(fontPath: string): Promise<Buffer> {
-  try {
-    debugLog(`Attempting to load font from: ${fontPath}`);
-    debugLog(`Current working directory: ${process.cwd()}`);
-
-    // Try to load font synchronously
-    const fontData = readFileSync(fontPath);
-    debugLog(`Successfully loaded font: ${fontPath}`);
-    return fontData;
-  } catch (error) {
-    debugLog(`Error loading font ${fontPath}:`, error);
-
-    // Fallback to loading from absolute path
-    try {
-      const absolutePath = join(
-        __dirname,
-        "..",
-        "..",
-        "public",
-        "fonts",
-        fontPath.split("/").pop()!
-      );
-      debugLog(`Trying absolute path: ${absolutePath}`);
-      return readFileSync(absolutePath);
-    } catch (fallbackError) {
-      debugLog(`Fallback also failed:`, fallbackError);
-      throw new Error(`Failed to load font ${fontPath}: ${error}`);
-    }
-  }
-}
 
 // Create reusable options object
 let imageOptions: any = null;
@@ -53,12 +22,13 @@ async function initializeFonts() {
   debugLog("Initializing fonts...");
 
   try {
-    const regularFont = await loadFont(
-      join(process.cwd(), "public/fonts/Nunito-Regular.ttf")
-    );
-    const semiBoldFont = await loadFont(
-      join(process.cwd(), "public/fonts/Nunito-SemiBold.ttf")
-    );
+    const regularFont = await fetch(
+      new URL('../../public/fonts/Nunito-Regular.ttf', import.meta.url)
+    ).then((res) => res.arrayBuffer());
+    
+    const semiBoldFont = await fetch(
+      new URL('../../public/fonts/Nunito-SemiBold.ttf', import.meta.url)
+    ).then((res) => res.arrayBuffer());
 
     imageOptions = {
       width: 1200,
