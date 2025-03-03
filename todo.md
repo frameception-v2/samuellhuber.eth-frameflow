@@ -18,7 +18,7 @@ Here's the executable task list following your specifications:
   API Endpoint: GET /api/posts
   Criteria: Returns array of 5 blog posts
 
-- [ ] Task 2: Add post excerpt to landing page
+- [x] Task 2: Add post excerpt to landing page
   File: components/HomeHero.tsx
   Action: Create new component
   Description: Display latest post excerpt
