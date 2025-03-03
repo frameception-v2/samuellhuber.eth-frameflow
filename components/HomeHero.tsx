@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { BlogPost } from "../lib/types";
+import { BlogPost } from "~/lib/types";
 
 export default function HomeHero({ post }: { post: BlogPost }) {
   // Simple truncation that breaks at word boundary near 280 chars
