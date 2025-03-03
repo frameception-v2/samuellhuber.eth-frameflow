@@ -35,7 +35,7 @@ Here's the executable task list following your specifications:
   ```
   Criteria: Visible excerpt with truncation and static image
 
-- [ ] Task 3: Implement post navigation
+- [x] Task 3: Implement post navigation
   File: components/PostNavigator.tsx
   Action: Create new component
   Description: Next button with URL state
