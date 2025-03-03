@@ -83,19 +83,25 @@ Here's the executable task list following your specifications:
   ```
   Criteria: Input validation and draft persistence
 
-- [ ] Task 5: Integrate Degen API
+- [x] Task 5: Integrate Degen API
   File: services/degen.ts
   Action: Create new service
   Description: Reward points on comment
   ```typescript
-  export async function rewardPoints(walletAddress: string) {
+  export async function rewardPoints(walletAddress: string): Promise<any> {
     const response = await fetch('https://api.degen.org/rewards', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${process.env.DEGEN_API_KEY}`
+        'Authorization': `Bearer ${process.env.DEGEN_API_KEY}`,
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({ address: walletAddress, points: 10 })
     });
+    
+    if (!response.ok) {
+      throw new Error(`API error: ${response.status} ${response.statusText}`);
+    }
+    
     return response.json();
   }
   ```
